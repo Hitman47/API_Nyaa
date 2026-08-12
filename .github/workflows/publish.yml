@@ -13,7 +13,7 @@ jobs:
   publish:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build scan candidate
         run: docker build --tag api-nyaa:release-candidate .
       - name: Trivy image scan
