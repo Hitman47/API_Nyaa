@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:nyaa="https://nyaa.si/xmlns/nyaa" version="2.0">
+  <channel>
+    <title>Nyaa - English Literature</title>
+    <item>
+      <title>Example Saga Vol. 01-03 [Digital] [Manga]</title>
+      <link>https://nyaa.si/download/1234567.torrent</link>
+      <guid isPermaLink="true">https://nyaa.si/view/1234567</guid>
+      <pubDate>Tue, 12 Aug 2026 11:42:00 +0000</pubDate>
+      <nyaa:seeders>12</nyaa:seeders>
+      <nyaa:leechers>1</nyaa:leechers>
+      <nyaa:downloads>85</nyaa:downloads>
+      <nyaa:infoHash>0123456789abcdef0123456789abcdef01234567</nyaa:infoHash>
+      <nyaa:categoryId>3_1</nyaa:categoryId>
+      <nyaa:category>Literature - English-translated</nyaa:category>
+      <nyaa:size>312.4 MiB</nyaa:size>
+      <nyaa:comments>2</nyaa:comments>
+      <nyaa:trusted>Yes</nyaa:trusted>
+      <nyaa:remake>No</nyaa:remake>
+    </item>
+    <item>
+      <title>Quiet Hero Vol. 04 [EPUB] [Light Novel]</title>
+      <link>https://nyaa.si/download/1234568.torrent</link>
+      <guid isPermaLink="true">https://nyaa.si/view/1234568</guid>
+      <pubDate>Mon, 11 Aug 2026 10:00:00 +0000</pubDate>
+      <nyaa:seeders>3</nyaa:seeders>
+      <nyaa:leechers>0</nyaa:leechers>
+      <nyaa:downloads>20</nyaa:downloads>
+      <nyaa:infoHash>1123456789abcdef0123456789abcdef01234567</nyaa:infoHash>
+      <nyaa:categoryId>3_1</nyaa:categoryId>
+      <nyaa:category>Literature - English-translated</nyaa:category>
+      <nyaa:size>18.2 MiB</nyaa:size>
+      <nyaa:comments>0</nyaa:comments>
+      <nyaa:trusted>No</nyaa:trusted>
+      <nyaa:remake>No</nyaa:remake>
+    </item>
+    <item>
+      <title>Weekly Comic Magazine 2026 Issue 30</title>
+      <link>https://nyaa.si/download/1234569.torrent</link>
+      <guid isPermaLink="true">https://nyaa.si/view/1234569</guid>
+      <pubDate>Sun, 10 Aug 2026 10:00:00 +0000</pubDate>
+      <nyaa:seeders>7</nyaa:seeders>
+      <nyaa:leechers>0</nyaa:leechers>
+      <nyaa:downloads>30</nyaa:downloads>
+      <nyaa:infoHash>2123456789abcdef0123456789abcdef01234567</nyaa:infoHash>
+      <nyaa:categoryId>3_1</nyaa:categoryId>
+      <nyaa:category>Literature - English-translated</nyaa:category>
+      <nyaa:size>500 MiB</nyaa:size>
+      <nyaa:comments>0</nyaa:comments>
+      <nyaa:trusted>No</nyaa:trusted>
+      <nyaa:remake>No</nyaa:remake>
+    </item>
+    <item>
+      <title>Contaminating French Book</title>
+      <link>https://nyaa.si/download/9999999.torrent</link>
+      <guid isPermaLink="true">https://nyaa.si/view/9999999</guid>
+      <pubDate>Sun, 10 Aug 2026 10:00:00 +0000</pubDate>
+      <nyaa:seeders>99</nyaa:seeders>
+      <nyaa:leechers>0</nyaa:leechers>
+      <nyaa:downloads>300</nyaa:downloads>
+      <nyaa:infoHash>3123456789abcdef0123456789abcdef01234567</nyaa:infoHash>
+      <nyaa:categoryId>3_2</nyaa:categoryId>
+      <nyaa:category>Literature - Non-English-translated</nyaa:category>
+      <nyaa:size>20 MiB</nyaa:size>
+      <nyaa:comments>0</nyaa:comments>
+      <nyaa:trusted>Yes</nyaa:trusted>
+      <nyaa:remake>No</nyaa:remake>
+    </item>
+  </channel>
+</rss>

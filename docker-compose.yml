@@ -1,0 +1,65 @@
+name: api_nyaa
+
+services:
+  api_nyaa:
+    image: ghcr.io/hitman47/api_nyaa:latest
+    container_name: API_Nyaa
+    restart: unless-stopped
+    init: true
+    ports:
+      - "49191:8000"
+    environment:
+      APP_NAME: API_Nyaa
+      APP_ENV: production
+      APP_VERSION: 0.1.0
+      LOG_LEVEL: INFO
+      ENABLE_DOCS: "true"
+      API_TOKEN: "${API_TOKEN:-}"
+      NYAA_BASE_URL: https://nyaa.si
+      NYAA_CATEGORY_ID: "3_1"
+      DB_PATH: /data/cache.sqlite3
+      # Valeurs intentionnellement non surchargeables : plafond /data absolu.
+      DATA_HARD_LIMIT_BYTES: "350000000"
+      CACHE_DB_TARGET_BYTES: "256000000"
+      SQLITE_WAL_HARD_LIMIT_BYTES: "32000000"
+      DEBUG_MAX_BYTES: "50000000"
+      MAX_CACHE_ENTRY_BYTES: "5000000"
+      CACHE_TTL_SEARCH_SECONDS: "300"
+      CACHE_TTL_DETAIL_SECONDS: "21600"
+      CACHE_STALE_GRACE_SECONDS: "604800"
+      RATE_LIMIT_ENABLED: "true"
+      RATE_LIMIT_REQUESTS: "60"
+      RATE_LIMIT_WINDOW_SECONDS: "60"
+      UPSTREAM_REQUESTS_PER_SECOND: "1"
+      UPSTREAM_MAX_CONCURRENCY: "2"
+    volumes:
+      - api_nyaa_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 256m
+    cpus: 1.0
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).read()"
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+volumes:
+  api_nyaa_data:
+    name: api_nyaa_data

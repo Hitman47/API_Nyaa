@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - run: python -m pip install --requirement requirements-dev.txt
+      - run: ruff check app tests scripts run_server.py
+      - run: python -m compileall -q app scripts run_server.py
+      - run: pytest --cov=app --cov-report=term-missing --cov-fail-under=75
+      - run: python scripts/validate_contract_and_docs.py
+      - run: python scripts/export_openapi.py --check
+
+  container:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate Compose
+        run: API_TOKEN=ci-token docker compose config --quiet
+      - name: Build image
+        run: docker build --tag api-nyaa:ci .
+      - name: Smoke test
+        run: |
+          docker run --detach --rm --name api-nyaa-ci --publish 18000:8000 \
+            --env APP_ENV=test --env DB_PATH=/data/cache.sqlite3 api-nyaa:ci
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:18000/health; then exit 0; fi
+            sleep 1
+          done
+          docker logs api-nyaa-ci
+          exit 1
+      - name: Trivy image scan
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # safe v0.35.0 / Trivy 0.69.3
+        with:
+          image-ref: api-nyaa:ci
+          version: v0.69.3
+          format: table
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
